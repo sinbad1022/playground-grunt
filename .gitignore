@@ -2,7 +2,10 @@ node_modules
 dist
 .tmp
 .sass-cache
+<<<<<<< HEAD
 app/components
+=======
+>>>>>>> 51e8eb46e42f8d90158e35852e64eb46db46d909
 .idea
 *.iml
 webapp/
