@@ -1,0 +1,63 @@
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        uglify : {
+            options : {
+                banner: '/*! <%= pkg.file %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            build : {
+                src: 'src/<%=pkg.file %>.js',
+                dest: 'dest/<%= pkg.file %>.min.js'
+            }
+        }
+    });
+
+
+
+module.exports = function (grunt) {
+
+
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        concat : {
+            options : {
+                separator : ";"
+            },
+            dist: {
+                src: ['src/zepto.js', 'src/underscore.js', 'src/backbone.js'],
+                dest: 'dest/libs.js'
+            }
+        },
+        uglify: {
+            build: {
+                src: 'dest/libs.js',
+                dest: 'dest/libs.min.js'
+            }
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.registerTask('default', ['concat','uglify']);
+
+}
+
+
+
+module.exports = function (grunt) {
+
+
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        uglify: {
+            "my_target": {
+                "files": {
+                    'dest/libs.min.js': ['src/zepto.js', 'src/underscore.js', 'src/backbone.js']
+                }
+            }
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.registerTask('default', ['uglify']);
+
+};
